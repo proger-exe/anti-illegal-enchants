@@ -1,0 +1,45 @@
+settings:
+  action: DELETE
+  notify-player: true
+  notify-admins: true
+  log-to-file: true
+  check-on-join: true
+  check-on-inventory-click: true
+  check-on-pickup: true
+  check-on-drop: true
+  check-on-craft: true
+  check-on-anvil: true
+  check-on-grindstone: true
+  check-on-villager-trade: true
+  check-on-death: true
+  check-dropped-items-on-chunk-load: true
+
+bypass:
+  permission: "aie.bypass"
+
+banned-enchants: []
+
+banned-combinations:
+  - [mending, infinity]
+  - [silk_touch, fortune]
+
+max-level-overrides:
+  sharpness: 5
+  protection: 4
+  efficiency: 5
+  unbreaking: 3
+  mending: 1
+
+whitelist:
+  materials:
+    - STICK
+  custom-model-data:
+    - 1001
+  display-names: []
+  pdc-keys:
+    - "minejust:custom_item"
+
+messages:
+  player-item-deleted: "&cВаш предмет был удалён: обнаружены невозможные зачарования."
+  admin-alert: "&c[AntiIllegalEnchants] &f%player%: %item% удалён. Причина: %reason%."
+  reload-success: "&aAntiIllegalEnchants config reloaded."

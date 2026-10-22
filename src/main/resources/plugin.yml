@@ -1,0 +1,31 @@
+name: AntiIllegalEnchants
+version: ${project.version}
+main: dev.sh3lby.antiillegalenchants.AntiIllegalEnchantsPlugin
+api-version: '1.21'
+author: sh3lby.code
+description: Detects and handles impossible or banned enchantments.
+
+commands:
+  aie:
+    description: AntiIllegalEnchants admin command.
+    usage: /aie <scan|scanall|reload|debug>
+
+permissions:
+  aie.admin.notify:
+    description: Receive illegal enchant alerts.
+    default: op
+  aie.admin.scan:
+    description: Scan a player inventory.
+    default: op
+  aie.admin.scanall:
+    description: Scan all online player inventories.
+    default: op
+  aie.admin.reload:
+    description: Reload AntiIllegalEnchants config.
+    default: op
+  aie.admin.debug:
+    description: Debug held item enchant status.
+    default: op
+  aie.bypass:
+    description: Skip illegal enchant checks.
+    default: false
