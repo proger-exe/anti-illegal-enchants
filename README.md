@@ -4,25 +4,30 @@
 [![AntiIllegal Enchants — Контроль зачарований и нелегальных предметов.](docs/portfolio/card.png)](docs/portfolio/card.svg)
 <!-- portfolio-card:end -->
 
-Paper 1.21 plugin that finds and neutralises items with impossible or banned enchantments: levels above vanilla maximum, enchantments on the wrong item type, conflicting pairs (Sharpness + Smite, Protection + Blast Protection, …) and anything on a configurable blacklist. Protects the economy and PvP from items produced by NBT editors, creative mode or exploits.
+Предмет с запрещённым зачарованием должен обрабатываться по правилам сервера. AntiIllegalEnchants проверяет уровни, совместимость чар и допустимость зачарования для конкретного предмета. Администратор задаёт ограничения и исключения в YAML.
 
-## How it works
+Это задача на границе игровых правил и модерации: обнаружить нелегальный предмет, выбрать действие и оставить запись о том, что произошло.
 
-- **Checks** (`check/`): pure logic over an item's enchantment map, no Bukkit calls, covered by MockBukkit tests.
-- **Scanning** (`action/`): inventories are scanned on join, on item pickup, on inventory open/click and on a periodic task. Chests and shulkers are scanned when opened.
-- **Actions**: per rule, either strip the offending enchantment, downgrade it to the allowed level or delete the item. Each action is logged with player, item and rule.
-- **Config** (`config/`): vanilla limits, whitelist for admin-approved custom items, per-world toggles, messages.
-- **Commands**: `/aie reload`, `/aie scan <player>`, `/aie stats`.
+## Как применяются правила
 
-## Build
+- Проверки привязаны к событиям: входу игрока, действиям с инвентарём, подбору, крафту и другим операциям. Отдельно обрабатываются выпавшие предметы при загрузке чанка.
+- Плагин проверяет и содержимое шалкеров и мешков. Разрешённые авторские предметы можно исключить по материалу, имени, CustomModelData или PDC-ключу.
+- Режим обработки задаётся в `settings.action`: `DELETE`, `STRIP`, `REPLACE` или `LOG_ONLY`. По умолчанию выбран `DELETE`, который удаляет предмет.
+- Администратору доступны `/aie scan <player>`, `/aie scanall`, `/aie reload` и `/aie debug`. Действия можно записывать в файл и сопровождать уведомлениями.
+
+Правила проверки отделены от обработки событий и изменения предметов. Их поведение проверяется тестами с MockBukkit. Текущая реализация исключает элитры из проверки и игнорирует проклятие утраты; эти границы важны при настройке правил сервера.
+
+Обсудить похожий проект: [sh3l.beer](https://sh3l.beer).
+
+## Сборка
 
 ```bash
 mvn package          # runs the MockBukkit test suite, produces target/anti-illegal-enchants-1.0.0.jar
 ```
 
-Requires Java 21 and a Paper 1.21 server.
+Нужны Java 21 и сервер Paper 1.21.
 
-## Layout
+## Структура проекта
 
 ```
 src/main/java/dev/sh3lby/antiillegalenchants/
@@ -36,6 +41,6 @@ src/test/java/...  EnchantCheckServiceTest (MockBukkit)
 docs/techtask.md   original spec (RU)
 ```
 
-## License
+## Лицензия
 
 MIT
