@@ -1,7 +1,7 @@
 # AntiIllegalEnchants
 
 <!-- portfolio-card:start -->
-[![sh3lby.code — нейтральная обложка](docs/portfolio/card.png)](docs/portfolio/card.svg)
+[![AntiIllegal Enchants — Контроль зачарований и нелегальных предметов.](docs/portfolio/card.png)](docs/portfolio/card.svg)
 <!-- portfolio-card:end -->
 
 Paper 1.21 plugin that finds and neutralises items with impossible or banned enchantments: levels above vanilla maximum, enchantments on the wrong item type, conflicting pairs (Sharpness + Smite, Protection + Blast Protection, …) and anything on a configurable blacklist. Protects the economy and PvP from items produced by NBT editors, creative mode or exploits.
